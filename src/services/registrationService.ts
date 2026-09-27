@@ -15,7 +15,6 @@ import {
 import { db, isFirebaseConfigured } from '../lib/firebase';
 import type { Registration, PublicTeamVerification, TeamMember } from '../types';
 import * as localStorageManager from '../utils/storage';
-import { triggerConfirmationEmail } from './emailService';
 
 export interface CreateRegistrationInput {
   teamName: string;
@@ -79,13 +78,6 @@ function mapFirestoreDocToRegistration(data: any, docId: string): Registration {
     createdAt: createdAtIso,
     updatedAt: updatedAtIso,
     agreedToRules: Boolean(data.agreedToRules),
-    emailStatus: data.emailStatus || 'pending',
-    emailSentAt: data.emailSentAt?.toDate 
-      ? data.emailSentAt.toDate().toISOString() 
-      : typeof data.emailSentAt === 'string' 
-        ? data.emailSentAt 
-        : undefined,
-    emailError: data.emailError,
   };
 }
 
@@ -128,15 +120,9 @@ export async function createRegistration(input: CreateRegistrationInput): Promis
       status: 'pending',
       createdAt: new Date().toISOString(),
       agreedToRules: true,
-      emailStatus: 'pending',
     };
 
     localStorageManager.saveRegistration(newReg);
-
-    // Trigger secure server-side email asynchronously (non-blocking)
-    triggerConfirmationEmail(newReg).catch((err) => {
-      console.warn('[Email] Non-blocking confirmation email trigger error:', err);
-    });
 
     return newReg;
   }
@@ -206,8 +192,6 @@ export async function createRegistration(input: CreateRegistrationInput): Promis
       ideaDescription: input.ideaDescription?.trim() || 'Description will be finalized during initial mentor check-in.',
       status: 'pending',
       agreedToRules: input.agreedToRules,
-      emailStatus: 'pending',
-      emailSentAt: null,
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp(),
     };
@@ -236,16 +220,10 @@ export async function createRegistration(input: CreateRegistrationInput): Promis
     status: 'pending',
     createdAt: new Date().toISOString(),
     agreedToRules: input.agreedToRules,
-    emailStatus: 'pending',
   };
 
   // Also cache in localStorage for fast local lookup
   localStorageManager.saveRegistration(savedRecord);
-
-  // Trigger secure server-side email asynchronously (non-blocking, never fails registration)
-  triggerConfirmationEmail(savedRecord).catch((err) => {
-    console.warn('[Email] Non-blocking confirmation email trigger error:', err);
-  });
 
   return savedRecord;
 }

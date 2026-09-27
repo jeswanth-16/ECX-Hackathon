@@ -10,17 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@google-cloud/firestore": "^9.2.0",
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "firebase": "^12.19.0",
-    "firebase-admin": "^14.5.0",
     "lucide-react": "^1.48.0",
     "qrcode": "^1.5.4",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4",
-    "resend": "^6.30.0",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {

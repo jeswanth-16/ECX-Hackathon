@@ -30,9 +30,6 @@ export interface Registration {
   createdAt: string; // ISO date string
   updatedAt?: string;
   agreedToRules: boolean;
-  emailStatus?: 'pending' | 'sent' | 'failed';
-  emailSentAt?: string;
-  emailError?: string;
 }
 
 export interface FirestoreRegistration {
@@ -62,9 +59,6 @@ export interface FirestoreRegistration {
   createdAt: any;
   updatedAt: any;
   agreedToRules: boolean;
-  emailStatus?: 'pending' | 'sent' | 'failed';
-  emailSentAt?: any;
-  emailError?: string;
 }
 
 export interface PublicTeamVerification {

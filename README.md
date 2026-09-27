@@ -182,25 +182,6 @@ Or copy the contents of `firestore.rules` directly into the Firebase Console **F
   - `read`: Public verification read allowed for event credential check-ins; full read and write restricted to verified admins in `admins/{uid}`.
 - **`admins/{uid}`**: Only verified admins can read or manage admin accounts.
 
-### Step 7: Configure Registration Confirmation Emails (Resend)
-The platform dispatches confirmation emails to the team leader after registration without requiring Firebase Cloud Functions or the paid Blaze plan.
-
-1. Obtain a free API key from [Resend](https://resend.com/api-keys).
-2. In your local `.env.local` (or server environment), add:
-   ```env
-   # Server-side Resend API Key (Not prefixed with VITE_, so NEVER exposed to browser bundle)
-   RESEND_API_KEY=re_your_secret_key
-   SENDER_EMAIL=ECX Hackathon 2026 <onboarding@resend.dev>
-   ```
-3. **Local Development**:
-   Running `npm run dev` automatically handles `POST /api/send-confirmation-email` in Vite's Node.js server. No extra commands needed.
-4. **Production Deployment Options**:
-   - **Render / Railway / VPS**: Deploy the lightweight standalone microservice in [`server/`](server/).
-   - **Vercel Serverless**: If deploying the frontend on Vercel, the file [`api/send-confirmation-email.js`](api/send-confirmation-email.js) automatically runs as a zero-config serverless function.
-
-> [!NOTE]
-> The Resend API key is stored exclusively on the server and is never exposed to client-side code. If email delivery fails for any reason, the registration in Firestore is never interrupted or duplicated.
-
 ---
 
 ## 🛠️ How to Customize Event Details

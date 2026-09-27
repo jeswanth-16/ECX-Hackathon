@@ -1,3 +1,2 @@
-# Netlify redirects and SPA routing fallback
-/api/send-confirmation-email  /.netlify/functions/send-confirmation-email  200!
-/*                            /index.html                                 200
+# SPA client-side routing fallback
+/*    /index.html   200

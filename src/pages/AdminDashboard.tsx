@@ -711,21 +711,6 @@ export const AdminDashboard: React.FC = () => {
                             <div className="text-[11px] text-slate-400 truncate max-w-[180px]">
                               {reg.collegeName}
                             </div>
-                            <div className="mt-1 flex items-center gap-1.5 text-[10px]">
-                              {reg.emailStatus === 'sent' ? (
-                                <span className="text-emerald-400 flex items-center gap-1" title="Confirmation email sent">
-                                  <Check className="w-3 h-3" /> Email Sent
-                                </span>
-                              ) : reg.emailStatus === 'failed' ? (
-                                <span className="text-rose-400 flex items-center gap-1" title={reg.emailError || 'Email delivery failed'}>
-                                  <X className="w-3 h-3" /> Email Failed
-                                </span>
-                              ) : (
-                                <span className="text-slate-500 flex items-center gap-1" title="Confirmation email pending">
-                                  <Clock className="w-3 h-3" /> Email Pending
-                                </span>
-                              )}
-                            </div>
                           </td>
 
                           <td className="py-3 px-4 whitespace-nowrap">
@@ -1024,38 +1009,6 @@ export const AdminDashboard: React.FC = () => {
                     Submitted: {new Date(selectedReg.createdAt).toLocaleString()}
                   </span>
                 </div>
-              </div>
-
-              {/* Confirmation Email Status */}
-              <div className="p-3.5 rounded-xl bg-dark-950/70 border border-slate-800 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block">
-                    Confirmation Email Status
-                  </span>
-                  <div className="flex items-center gap-2 mt-0.5">
-                    {selectedReg.emailStatus === 'sent' ? (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        Sent • Delivered to {selectedReg.email}
-                      </span>
-                    ) : selectedReg.emailStatus === 'failed' ? (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-rose-400">
-                        <XCircle className="w-3.5 h-3.5" />
-                        Delivery Failed {selectedReg.emailError ? `(${selectedReg.emailError})` : ''}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400">
-                        <Clock className="w-3.5 h-3.5" />
-                        Pending Backend Trigger
-                      </span>
-                    )}
-                  </div>
-                </div>
-                {selectedReg.emailSentAt && (
-                  <span className="text-[10px] text-slate-500">
-                    Sent: {new Date(selectedReg.emailSentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </span>
-                )}
               </div>
 
               <div className="p-4 rounded-xl bg-dark-950/70 border border-slate-800">
