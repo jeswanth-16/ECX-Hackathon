@@ -1,0 +1,65 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Admins Collection
+    // Admin documents can only be created/modified by project owners through Firebase Console or Admin SDK
+    match /admins/{adminUid} {
+      allow read: if isAuthenticated() && (request.auth.uid == adminUid || isAdmin());
+      allow write: if false;
+    }
+
+    // Atomic Registration Counter
+    match /counters/{counterId} {
+      allow read: if true;
+      allow write: if counterId == 'registrations';
+    }
+
+    // Team Registrations Collection
+    match /registrations/{regId} {
+      // Admins can list and read all documents
+      // Public can read an individual team record by direct document ID (for verification & pass display)
+      allow list: if isAdmin();
+      allow get: if true;
+
+      // Public registration submission with strict schema & privilege guardrails
+      allow create: if
+        // Must start in 'pending' status (cannot auto-approve)
+        request.resource.data.status == 'pending' &&
+        // Prevent arbitrary privilege escalation fields
+        !('role' in request.resource.data) &&
+        !('isAdmin' in request.resource.data) &&
+        !('payment' in request.resource.data) &&
+        // Required basic fields
+        request.resource.data.teamName is string &&
+        request.resource.data.teamName.size() >= 3 &&
+        request.resource.data.problemDomain is string &&
+        request.resource.data.collegeName is string &&
+        request.resource.data.department is string &&
+        // Team size must be between 2 and 4 members
+        request.resource.data.members is list &&
+        request.resource.data.members.size() >= 2 &&
+        request.resource.data.members.size() <= 4 &&
+        // Must agree to rules
+        request.resource.data.agreedToRules == true;
+
+      // Only authorized administrators can update status (approve/reject)
+      // Or an admin updating candidate details
+      allow update: if isAdmin();
+
+      // Only authorized administrators can delete registration records
+      allow delete: if isAdmin();
+    }
+  }
+}

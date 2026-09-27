@@ -1,0 +1,28 @@
+# Netlify Production Configuration for ECX Hackathon 2026
+# Vite + React + Firebase + Netlify Serverless Functions
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["firebase-admin"]
+
+# 1. API proxy redirect: routes /api/send-confirmation-email to Netlify Function
+[[redirects]]
+  from = "/api/send-confirmation-email"
+  to = "/.netlify/functions/send-confirmation-email"
+  status = 200
+  force = true
+
+# 2. SPA client-side routing fallback
+# Ensures routes such as /my-team, /admin/dashboard, and /team/:id resolve without 404 on refresh
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
