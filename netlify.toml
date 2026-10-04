@@ -1,5 +1,5 @@
-# Netlify Production Configuration for ECX Hackathon 2026
-# Vite + React + Firebase (SPA Frontend)
+# Netlify Production Configuration for EDGECRAFT 2026
+# Vite + React (SPA Frontend)
 
 [build]
   command = "npm run build"

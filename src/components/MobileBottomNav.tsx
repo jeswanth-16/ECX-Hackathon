@@ -2,35 +2,45 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   Home, 
-  Layers, 
+  Cpu, 
   PlusCircle, 
-  Users, 
+  Calendar, 
   MoreHorizontal,
   X,
-  Trophy,
-  Calendar,
-  BookOpen,
-  HelpCircle,
-  Shield,
-  Info
+  Info,
+  Users,
+  HelpCircle
 } from 'lucide-react';
+import { useRegistration } from '../context/useRegistration';
+import { eventConfig } from '../data/eventConfig';
 
 export const MobileBottomNav: React.FC = () => {
   const location = useLocation();
   const [moreDrawerOpen, setMoreDrawerOpen] = useState(false);
+  const { openRegistration } = useRegistration();
 
   const isActive = (path: string) => {
-    if (path === '/') return location.pathname === '/';
-    return location.pathname.startsWith(path);
+    if (path === '/') return location.pathname === '/' && !location.hash;
+    if (path.startsWith('/#')) return location.hash === path.replace('/', '');
+    return location.pathname === path;
+  };
+
+  const handleNavClick = (path: string, e: React.MouseEvent) => {
+    if (path.startsWith('/#')) {
+      const targetId = path.replace('/#', '');
+      const el = document.getElementById(targetId);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth' });
+        setMoreDrawerOpen(false);
+      }
+    }
   };
 
   const moreLinks = [
-    { name: 'Prizes & Awards', path: '/prizes', icon: Trophy },
-    { name: 'Timeline & Schedule', path: '/timeline', icon: Calendar },
-    { name: 'Rules & Guidelines', path: '/rules', icon: BookOpen },
+    { name: 'About EDGECRAFT', path: '/about', icon: Info },
+    { name: 'Coordinators', path: '/#coordinators', icon: Users },
     { name: 'Frequently Asked Questions', path: '/faq', icon: HelpCircle },
-    { name: 'About ECX Hackathon', path: '/about', icon: Info },
-    { name: 'Admin Portal', path: '/admin/login', icon: Shield },
   ];
 
   return (
@@ -46,7 +56,7 @@ export const MobileBottomNav: React.FC = () => {
             to="/"
             className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] rounded-xl transition-colors ${
               isActive('/') && !moreDrawerOpen
-                ? 'text-electric-cyan font-semibold'
+                ? 'text-white font-semibold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -54,53 +64,54 @@ export const MobileBottomNav: React.FC = () => {
             <span className="text-[10px] tracking-tight">Home</span>
           </Link>
 
-          {/* Themes */}
-          <Link
-            to="/themes"
+          {/* Challenge */}
+          <a
+            href="/#challenge"
+            onClick={(e) => handleNavClick('/#challenge', e)}
             className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] rounded-xl transition-colors ${
-              isActive('/themes') && !moreDrawerOpen
-                ? 'text-electric-cyan font-semibold'
+              isActive('/#challenge') && !moreDrawerOpen
+                ? 'text-white font-semibold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Layers className="w-5 h-5 mb-1" />
-            <span className="text-[10px] tracking-tight">Themes</span>
-          </Link>
+            <Cpu className="w-5 h-5 mb-1" />
+            <span className="text-[10px] tracking-tight">Challenge</span>
+          </a>
 
           {/* Elevated Register Button */}
-          <Link
-            to="/register"
-            className="flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] group"
+          <button
+            type="button"
+            onClick={openRegistration}
+            className="flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] group cursor-pointer"
           >
-            <div className="w-10 h-10 -mt-5 rounded-full bg-gradient-to-r from-electric-blue to-electric-purple p-0.5 shadow-glow-blue flex items-center justify-center group-active:scale-95 transition-transform">
-              <div className="w-full h-full bg-dark-950 rounded-full flex items-center justify-center">
-                <PlusCircle className="w-5 h-5 text-electric-cyan" />
-              </div>
+            <div className="w-10 h-10 -mt-5 rounded-full bg-white text-dark-950 shadow-lg flex items-center justify-center group-active:scale-95 transition-transform">
+              <PlusCircle className="w-5 h-5 text-dark-950" />
             </div>
             <span className="text-[10px] font-bold text-white tracking-tight mt-0.5">
               Register
             </span>
-          </Link>
+          </button>
 
-          {/* My Team */}
+          {/* Schedule */}
           <Link
-            to="/my-team"
+            to="/timeline"
             className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] rounded-xl transition-colors ${
-              isActive('/my-team') && !moreDrawerOpen
-                ? 'text-electric-cyan font-semibold'
+              isActive('/timeline') && !moreDrawerOpen
+                ? 'text-white font-semibold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Users className="w-5 h-5 mb-1" />
-            <span className="text-[10px] tracking-tight">My Team</span>
+            <Calendar className="w-5 h-5 mb-1" />
+            <span className="text-[10px] tracking-tight">Schedule</span>
           </Link>
 
           {/* More menu drawer trigger */}
           <button
+            type="button"
             onClick={() => setMoreDrawerOpen(true)}
             className={`flex flex-col items-center justify-center flex-1 py-1 min-h-[44px] rounded-xl transition-colors ${
               moreDrawerOpen
-                ? 'text-electric-cyan font-semibold'
+                ? 'text-white font-semibold'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -118,14 +129,14 @@ export const MobileBottomNav: React.FC = () => {
           aria-labelledby="more-menu-title"
           className="md:hidden fixed inset-0 z-50 flex flex-col justify-end bg-dark-950/80 backdrop-blur-sm animate-fadeIn"
         >
-          <div className="p-5 pb-8 rounded-t-3xl bg-dark-900 border-t border-slate-700 shadow-2xl max-h-[85vh] overflow-y-auto">
+          <div className="p-5 pb-8 rounded-t-3xl bg-dark-900 border-t border-slate-800 shadow-2xl max-h-[85vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-800">
-              <h3 id="more-menu-title" className="text-sm font-bold uppercase tracking-wider text-white">
-                More Navigation
+              <h3 id="more-menu-title" className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                Navigation // EDGECRAFT 2026
               </h3>
               <button
                 onClick={() => setMoreDrawerOpen(false)}
-                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800"
+                className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-dark-800"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -139,10 +150,13 @@ export const MobileBottomNav: React.FC = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    onClick={() => setMoreDrawerOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(item.path, e);
+                      setMoreDrawerOpen(false);
+                    }}
                     className="flex items-center gap-3 p-3.5 rounded-xl bg-dark-950/80 border border-slate-800 text-slate-200 hover:text-white hover:border-slate-700 min-h-[48px] active:bg-dark-800"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-electric-cyan shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-dark-900 border border-slate-800 flex items-center justify-center text-electric-cyan shrink-0">
                       <Icon className="w-4 h-4" />
                     </div>
                     <span className="text-sm font-semibold">{item.name}</span>
@@ -151,8 +165,8 @@ export const MobileBottomNav: React.FC = () => {
               })}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-slate-800 text-center text-xs text-slate-400">
-              ECX Hackathon 2026 • Knowledge Institute of Technology
+            <div className="mt-4 pt-4 border-t border-slate-800 text-center text-[11px] font-mono text-slate-500">
+              {eventConfig.name} • {eventConfig.college}
             </div>
           </div>
         </div>

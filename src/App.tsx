@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { Footer } from './components/Footer';
+import { RegistrationProvider } from './context/RegistrationContext';
+import { AdminAuthProvider } from './context/AdminAuthContext';
 
-// Pages
+// Public Pages
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Themes } from './pages/Themes';
-import { Prizes } from './pages/Prizes';
 import { TimelinePage } from './pages/TimelinePage';
 import { Rules } from './pages/Rules';
 import { FAQPage } from './pages/FAQPage';
 import { Register } from './pages/Register';
-import { RegistrationSuccess } from './pages/RegistrationSuccess';
-import { MyTeam } from './pages/MyTeam';
-import { PublicTeamVerificationPage } from './pages/PublicTeamVerification';
-import { AdminLogin } from './pages/AdminLogin';
-import { AdminDashboard } from './pages/AdminDashboard';
 import { NotFound } from './pages/NotFound';
-import { getCurrentAdminUser } from './services/authService';
+
+// Admin Components & Pages
+import { AdminProtectedRoute } from './admin/components/AdminProtectedRoute';
+import { AdminLayout } from './admin/components/AdminLayout';
+import { AdminLoginPage } from './admin/pages/AdminLoginPage';
+import { AdminOverviewPage } from './admin/pages/AdminOverviewPage';
+import { TeamListPage } from './admin/pages/TeamListPage';
+import { TeamFormPage } from './admin/pages/TeamFormPage';
+import { TeamDetailPage } from './admin/pages/TeamDetailPage';
+import { AdminSettingsPage } from './admin/pages/AdminSettingsPage';
 
 // Scroll to top helper on route change
 function ScrollToTop() {
@@ -32,101 +37,113 @@ function ScrollToTop() {
   return null;
 }
 
-// Protected Admin Route wrapper
-function ProtectedAdminRoute({ children }: { children: React.ReactNode }) {
-  const admin = getCurrentAdminUser();
-  if (!admin) {
-    return <Navigate to="/admin/login" replace />;
-  }
-  return <>{children}</>;
-}
-
-// Layout wrapper to conditionally show public navigation
 function AppContent() {
-  const location = useLocation();
-  const isAdminDashboard = location.pathname.startsWith('/admin') && location.pathname !== '/admin/login';
+  const { pathname } = useLocation();
+  const isAdminRoute = pathname.startsWith('/admin');
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-950 text-slate-100 font-sans selection:bg-electric-blue selection:text-white">
+    <div className="flex flex-col min-h-screen bg-dark-950 text-slate-100 font-sans selection:bg-cyan-500 selection:text-black">
       <ScrollToTop />
 
-      {/* Show Navbar on public pages and admin login, hide on full admin dashboard */}
-      {!isAdminDashboard && <Navbar />}
+      {/* Render Public Navigation only on non-admin routes */}
+      {!isAdminRoute && <Navbar />}
 
-      {/* Main content container with padding on mobile for fixed bottom nav */}
-      <main className={`flex-1 ${!isAdminDashboard ? 'pb-20 md:pb-0' : ''}`}>
+      <main className={isAdminRoute ? 'flex-1' : 'flex-1 pb-20 md:pb-0'}>
         <Routes>
+          {/* Public Event Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/challenge" element={<Themes />} />
           <Route path="/themes" element={<Themes />} />
-          <Route path="/prizes" element={<Prizes />} />
           <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/registration-success" element={<RegistrationSuccess />} />
-          <Route path="/my-team" element={<MyTeam />} />
-          
-          {/* Public Team Verification URL (from QR code scan) */}
-          <Route path="/team/:registrationId" element={<PublicTeamVerificationPage />} />
-          <Route path="/team" element={<Navigate to="/my-team" replace />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+          {/* Admin Portal Authentication */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+
+          {/* Admin Protected Routes */}
           <Route
-            path="/admin/dashboard"
-            element={
-              <ProtectedAdminRoute>
-                <AdminDashboard />
-              </ProtectedAdminRoute>
-            }
+            path="/admin"
+            element={<Navigate to="/admin/overview" replace />}
           />
           <Route
-            path="/admin/registrations"
+            path="/admin/overview"
             element={
-              <ProtectedAdminRoute>
-                <AdminDashboard />
-              </ProtectedAdminRoute>
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <AdminOverviewPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
             }
           />
           <Route
             path="/admin/teams"
             element={
-              <ProtectedAdminRoute>
-                <AdminDashboard />
-              </ProtectedAdminRoute>
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <TeamListPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
             }
           />
           <Route
-            path="/admin/export"
+            path="/admin/teams/new"
             element={
-              <ProtectedAdminRoute>
-                <AdminDashboard />
-              </ProtectedAdminRoute>
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <TeamFormPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/teams/:teamId"
+            element={
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <TeamDetailPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/teams/:teamId/edit"
+            element={
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <TeamFormPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
             }
           />
           <Route
             path="/admin/settings"
             element={
-              <ProtectedAdminRoute>
-                <AdminDashboard />
-              </ProtectedAdminRoute>
+              <AdminProtectedRoute>
+                <AdminLayout>
+                  <AdminSettingsPage />
+                </AdminLayout>
+              </AdminProtectedRoute>
             }
           />
 
-          {/* 404 Route */}
+          {/* Legacy redirects */}
+          <Route path="/prizes" element={<Navigate to="/#challenge" replace />} />
+          <Route path="/my-team" element={<Navigate to="/register" replace />} />
+          <Route path="/team/*" element={<Navigate to="/register" replace />} />
+          <Route path="/team" element={<Navigate to="/register" replace />} />
+          <Route path="/registration-success" element={<Navigate to="/register" replace />} />
+
+          {/* 404 Catch-All */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
-      {/* Show Footer and Mobile Bottom Nav on public pages */}
-      {!isAdminDashboard && (
-        <>
-          <Footer />
-          <MobileBottomNav />
-        </>
-      )}
+      {/* Render Public Footer & Mobile Bottom Bar only on non-admin routes */}
+      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && <MobileBottomNav />}
     </div>
   );
 }
@@ -134,7 +151,11 @@ function AppContent() {
 export function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      <AdminAuthProvider>
+        <RegistrationProvider>
+          <AppContent />
+        </RegistrationProvider>
+      </AdminAuthProvider>
     </BrowserRouter>
   );
 }

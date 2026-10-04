@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
+import { Search, ChevronDown, HelpCircle, AlertCircle } from 'lucide-react';
 import { faqData } from '../data/eventConfig';
 
 export const FAQ: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Open first by default
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const categories = ['All', 'General', 'Team & Registration', 'Technical', 'Prizes & Logistics'];
+  const categories = ['All', 'General', 'Registration', 'Challenge', 'Coordinators'];
 
   const filteredFAQs = faqData.filter((item) => {
     const matchesSearch =
@@ -27,13 +27,13 @@ export const FAQ: React.FC = () => {
       {/* Search and Category Filters */}
       <div className="mb-8 space-y-4">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search questions (e.g. registration fee, team size, hardware)..."
-            className="w-full pl-12 pr-4 py-3.5 rounded-xl bg-dark-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-colors text-sm"
+            placeholder="Search questions (e.g. schedule, rounds, registration)..."
+            className="w-full pl-11 pr-4 py-3 rounded-xl bg-dark-900 border border-slate-800 text-white placeholder-slate-500 focus:outline-none focus:border-slate-600 transition-colors text-sm"
           />
         </div>
 
@@ -43,9 +43,9 @@ export const FAQ: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold whitespace-nowrap transition-colors ${
                 selectedCategory === cat
-                  ? 'bg-electric-blue text-white shadow-glow-blue'
+                  ? 'bg-white text-dark-950 shadow-sm'
                   : 'bg-dark-900 text-slate-400 hover:text-white hover:bg-dark-850 border border-slate-800'
               }`}
             >
@@ -58,9 +58,9 @@ export const FAQ: React.FC = () => {
       {/* Accordion List */}
       {filteredFAQs.length === 0 ? (
         <div className="text-center py-12 p-8 rounded-2xl bg-dark-900 border border-slate-800">
-          <HelpCircle className="w-12 h-12 text-slate-500 mx-auto mb-3" />
+          <HelpCircle className="w-10 h-10 text-slate-500 mx-auto mb-3" />
           <h4 className="text-base font-bold text-white mb-1">No matching questions found</h4>
-          <p className="text-sm text-slate-400">
+          <p className="text-xs text-slate-400">
             Try adjusting your search query or clear category filters.
           </p>
           <button
@@ -68,7 +68,7 @@ export const FAQ: React.FC = () => {
               setSearchTerm('');
               setSelectedCategory('All');
             }}
-            className="mt-4 px-4 py-2 text-xs font-semibold rounded-lg bg-dark-800 text-blue-400 hover:text-blue-300"
+            className="mt-4 px-4 py-2 text-xs font-semibold rounded-lg bg-dark-800 text-slate-200 hover:text-white"
           >
             Clear Filters
           </button>
@@ -80,12 +80,12 @@ export const FAQ: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="overflow-hidden rounded-xl border border-slate-800/90 bg-dark-900/80 transition-colors hover:border-slate-700"
+                className="overflow-hidden rounded-xl border border-slate-800 bg-dark-900/90 transition-colors hover:border-slate-700"
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(index)}
-                  className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-1 focus:ring-electric-blue/40"
+                  className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 focus:outline-none focus:ring-1 focus:ring-slate-600"
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3">
@@ -95,17 +95,17 @@ export const FAQ: React.FC = () => {
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 text-slate-400 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-electric-blue' : ''
+                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-white' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 leading-relaxed animate-fadeIn">
+                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 border-t border-slate-800/80 leading-relaxed animate-fadeIn">
                     <p>{item.answer}</p>
                     <div className="mt-3 flex items-center gap-2">
-                      <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500 bg-dark-950 px-2 py-0.5 rounded border border-slate-800">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 bg-dark-950 px-2 py-0.5 rounded border border-slate-800">
                         {item.category}
                       </span>
                     </div>
@@ -118,10 +118,10 @@ export const FAQ: React.FC = () => {
       )}
 
       {/* Organizer note */}
-      <div className="mt-8 p-4 rounded-xl bg-blue-950/30 border border-blue-500/20 flex items-start gap-3">
-        <Sparkles className="w-5 h-5 text-electric-cyan shrink-0 mt-0.5" />
+      <div className="mt-8 p-4 rounded-xl bg-dark-900 border border-slate-800 flex items-start gap-3">
+        <AlertCircle className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
         <div className="text-xs text-slate-300 leading-relaxed">
-          <strong>Need further clarification?</strong> If your question is not listed here, feel free to contact the ECX Hackathon coordinators via the contact details provided in the footer.
+          <strong>Questions regarding EDGECRAFT 2026?</strong> Feel free to connect with Faculty Coordinator <a href="tel:+916379339310" className="text-cyan-400 hover:text-cyan-300 underline font-semibold" aria-label="Call Faculty Coordinator Vividhini O">Vividhini O (+91 63793 39310)</a> or Student Coordinators <a href="tel:+918610104355" className="text-cyan-400 hover:text-cyan-300 underline font-semibold" aria-label="Call Student Coordinator Surya A">Surya A (+91 861010 4355)</a> and <a href="tel:+916383785532" className="text-cyan-400 hover:text-cyan-300 underline font-semibold" aria-label="Call Student Coordinator Sarthoshini S">Sarthoshini S (+91 63837 85532)</a> from the Department of Electronics and Computer Engineering.
         </div>
       </div>
     </div>

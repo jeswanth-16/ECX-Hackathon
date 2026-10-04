@@ -33,23 +33,12 @@ if (isFirebaseConfigured()) {
     auth = getAuth(app);
     db = getFirestore(app);
   } catch (err) {
-    console.error('Firebase initialization error:', err);
+    console.error('Firebase client initialization error:', err);
   }
 } else {
-  console.info(
-    'Firebase environment variables not set. The platform is running in local demonstration / offline mode.'
+  console.warn(
+    'Firebase environment variables are not configured. Cloud Firestore and Firebase Auth will not be available.'
   );
 }
 
 export { app, auth, db };
-
-export function getPublicBaseUrl(): string {
-  const envUrl = import.meta.env.VITE_PUBLIC_BASE_URL;
-  if (envUrl && envUrl.trim() !== '') {
-    return envUrl.trim().replace(/\/+$/, '');
-  }
-  if (typeof window !== 'undefined' && window.location && window.location.origin) {
-    return window.location.origin;
-  }
-  return 'http://localhost:5173';
-}
