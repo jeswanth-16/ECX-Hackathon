@@ -61,6 +61,12 @@ export const Home: React.FC = () => {
                   <p className="text-slate-400">{eventConfig.venue}, Salem</p>
                 </div>
 
+                <div className="border-b border-slate-800/80 pb-3">
+                  <span className="text-[10px] uppercase font-bold text-slate-500 block">Registration Fee</span>
+                  <p className="text-sm font-bold text-cyan-300 mt-0.5">₹250 per team</p>
+                  <p className="text-slate-400">One payment per team</p>
+                </div>
+
                 <div>
                   <span className="text-[10px] uppercase font-bold text-slate-500 block">Registration Deadline</span>
                   <p className="text-sm font-bold text-amber-300 mt-0.5">{eventConfig.registrationDeadline}</p>
@@ -110,7 +116,23 @@ export const Home: React.FC = () => {
                 Take the stage at KIOT Campus on October 23, 2026. Register your team before the October 20 deadline to secure your place in the 8-hour hardware challenge.
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              {/* Registration Fee Highlight Box */}
+              <div className="my-6 inline-flex flex-col items-center justify-center px-6 py-4 rounded-2xl bg-dark-950 border border-cyan-500/30 text-center">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold">
+                  REGISTRATION FEE
+                </span>
+                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-0.5">
+                  ₹250 <span className="text-sm font-mono font-normal text-slate-400">/ TEAM</span>
+                </span>
+                <span className="text-xs text-cyan-300 mt-1 font-medium">
+                  Registration Fee: ₹250 per team
+                </span>
+                <span className="text-[11px] text-slate-400 mt-0.5">
+                  One payment is required per team, regardless of team size.
+                </span>
+              </div>
+
+              <div className="mt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <button
                   type="button"
                   onClick={openRegistration}

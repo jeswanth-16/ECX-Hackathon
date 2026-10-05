@@ -49,6 +49,8 @@ export interface EventConfig {
   venue: string;
   venueFull: string;
   registrationDeadline: string;
+  registrationFee?: string;
+  registrationFeeNote?: string;
   registrationFormUrl: string;
   description: string;
   targetCountdownDate: string;

@@ -44,7 +44,7 @@ Progression: `REVERSE ↓ REBUILD ↓ RECONFIGURE`
 ## 👥 Event Leadership & Coordinators
 
 - **Faculty Coordinator**: Vividhini O
-- **Student Coordinators**: Surya A, Sarthoshini S
+- **Student Coordinators**: Surya A, Santhoshini S
 - **Department**: Department of Electronics and Computer Engineering
 - **Institution**: Knowledge Institute of Technology, Salem
 

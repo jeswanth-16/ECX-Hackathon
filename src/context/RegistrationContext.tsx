@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import type { ReactNode } from 'react';
 import { REGISTRATION_FORM_URL, eventConfig } from '../data/eventConfig';
-import { AlertCircle, Calendar, Clock, MapPin, X } from 'lucide-react';
+import { AlertCircle, Calendar, Clock, MapPin, X, Ticket } from 'lucide-react';
 import { RegistrationContext } from './RegistrationContextType';
 
 export const RegistrationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -69,6 +69,12 @@ export const RegistrationProvider: React.FC<{ children: ReactNode }> = ({ childr
             </div>
 
             <div className="space-y-2.5 text-xs sm:text-sm text-slate-300 my-5">
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-dark-950/60 border border-cyan-500/30">
+                <Ticket className="w-4 h-4 text-cyan-400 shrink-0" />
+                <span>
+                  <strong className="text-white">Registration Fee:</strong> ₹250 per team (one payment per team)
+                </span>
+              </div>
               <div className="flex items-center gap-3 p-3 rounded-xl bg-dark-950/60 border border-slate-800">
                 <Calendar className="w-4 h-4 text-electric-cyan shrink-0" />
                 <span>

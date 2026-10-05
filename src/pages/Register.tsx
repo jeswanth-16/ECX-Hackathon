@@ -12,7 +12,8 @@ import {
   UserCheck,
   Users,
   ExternalLink,
-  Phone
+  Phone,
+  Ticket
 } from 'lucide-react';
 
 export const Register: React.FC = () => {
@@ -43,9 +44,25 @@ export const Register: React.FC = () => {
                 Official Google Form Ready
               </h3>
 
-              <p className="text-sm text-slate-300 mb-8 leading-relaxed">
+              <p className="text-sm text-slate-300 mb-6 leading-relaxed">
                 Click below to complete your team submission via our official Google Form before the registration deadline of {eventConfig.registrationDeadline}.
               </p>
+
+              {/* Registration Fee Highlight Box */}
+              <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-dark-950 border border-cyan-500/30 text-center">
+                <span className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-1">
+                  REGISTRATION
+                </span>
+                <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                  ₹250 <span className="text-base sm:text-lg font-mono font-normal text-slate-400">/ TEAM</span>
+                </div>
+                <p className="text-xs sm:text-sm text-cyan-300 font-semibold mt-2">
+                  Registration Fee: ₹250 per team
+                </p>
+                <p className="text-xs text-slate-400 mt-1">
+                  One payment is required per team, regardless of team size.
+                </p>
+              </div>
 
               <button
                 type="button"
@@ -67,9 +84,25 @@ export const Register: React.FC = () => {
                 Registration form will be available soon.
               </h3>
 
-              <p className="text-sm text-slate-400 mb-8 leading-relaxed">
+              <p className="text-sm text-slate-400 mb-6 leading-relaxed">
                 The official Google Form for {eventConfig.name} is being prepared. Responses will be collected via Google Forms. Please check back before the deadline on <strong>{eventConfig.registrationDeadline}</strong>.
               </p>
+
+              {/* Registration Fee Notice */}
+              <div className="mb-8 p-5 sm:p-6 rounded-2xl bg-dark-950 border border-slate-800 text-center">
+                <span className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-1">
+                  REGISTRATION
+                </span>
+                <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+                  ₹250 <span className="text-base sm:text-lg font-mono font-normal text-slate-400">/ TEAM</span>
+                </div>
+                <p className="text-xs sm:text-sm text-cyan-300 font-semibold mt-2">
+                  Registration Fee: ₹250 per team
+                </p>
+                <p className="text-xs text-slate-400 mt-1">
+                  One payment is required per team, regardless of team size.
+                </p>
+              </div>
 
               <button
                 type="button"
@@ -85,7 +118,7 @@ export const Register: React.FC = () => {
       </div>
 
       {/* Key Event Information */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
         <div className="p-5 rounded-2xl bg-dark-900 border border-slate-800 flex items-start gap-3">
           <Calendar className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
           <div>
@@ -107,6 +140,15 @@ export const Register: React.FC = () => {
           <div>
             <span className="text-[10px] font-mono uppercase text-slate-500 font-bold block">Venue</span>
             <span className="text-sm font-bold text-white block">{eventConfig.venue}</span>
+          </div>
+        </div>
+
+        <div className="p-5 rounded-2xl bg-dark-900 border border-cyan-500/30 flex items-start gap-3">
+          <Ticket className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
+          <div>
+            <span className="text-[10px] font-mono uppercase text-cyan-400 font-bold block">Registration Fee</span>
+            <span className="text-sm font-bold text-white block">₹250 per team</span>
+            <span className="text-[10px] text-slate-400 block mt-0.5">One payment per team</span>
           </div>
         </div>
 
@@ -169,12 +211,12 @@ export const Register: React.FC = () => {
                 <Users className="w-4 h-4" />
                 <span className="font-mono text-[10px] font-bold uppercase">Student Coordinator</span>
               </div>
-              <p className="font-bold text-white text-base">Sarthoshini S</p>
+              <p className="font-bold text-white text-base">Santhoshini S</p>
               <p className="text-slate-400 text-xs mt-0.5">{eventConfig.department}</p>
             </div>
             <a
               href="tel:+916383785532"
-              aria-label="Call Student Coordinator Sarthoshini S"
+              aria-label="Call Student Coordinator Santhoshini S"
               className="mt-3 pt-3 border-t border-slate-800/80 inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
             >
               <Phone className="w-3.5 h-3.5" />

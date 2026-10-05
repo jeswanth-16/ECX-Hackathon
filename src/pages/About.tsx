@@ -55,6 +55,11 @@ export const About: React.FC = () => {
               <p className="text-sm font-bold text-white mt-0.5">{eventConfig.date}</p>
               <p className="text-slate-400">{eventConfig.venue}, Salem</p>
             </div>
+            <div className="border-b border-slate-800 pb-3">
+              <span className="text-[10px] uppercase font-bold text-slate-500 block">Registration Fee</span>
+              <p className="text-sm font-bold text-cyan-300 mt-0.5">₹250 per team</p>
+              <p className="text-slate-400">One payment per team</p>
+            </div>
             <div>
               <span className="text-[10px] uppercase font-bold text-slate-500 block">Registration Deadline</span>
               <p className="text-sm font-bold text-amber-300 mt-0.5">{eventConfig.registrationDeadline}</p>
@@ -155,12 +160,12 @@ export const About: React.FC = () => {
               <span className="text-[10px] font-mono uppercase text-slate-400 font-bold block mb-1">
                 Student Coordinator
               </span>
-              <p className="text-base font-bold text-white">Sarthoshini S</p>
+              <p className="text-base font-bold text-white">Santhoshini S</p>
               <p className="text-slate-400 text-xs mt-1">{eventConfig.department}</p>
             </div>
             <a
               href="tel:+916383785532"
-              aria-label="Call Student Coordinator Sarthoshini S"
+              aria-label="Call Student Coordinator Santhoshini S"
               className="mt-3 pt-3 border-t border-slate-800/80 inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
             >
               <Phone className="w-3.5 h-3.5" />
@@ -175,9 +180,14 @@ export const About: React.FC = () => {
         <h3 className="text-2xl sm:text-3xl font-black text-white mb-2">
           Ready to Compete at EDGECRAFT 2026?
         </h3>
-        <p className="text-sm text-slate-400 mb-6 max-w-md">
+        <p className="text-sm text-slate-400 mb-4 max-w-md">
           Review the three-round progression, prepare your engineering platform, and submit your registration before October 20, 2026.
         </p>
+        <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-dark-950 border border-cyan-500/30 text-xs font-mono text-cyan-300">
+          <span className="font-bold">Team Registration Fee: ₹250</span>
+          <span className="text-slate-500">•</span>
+          <span className="text-slate-400">One payment per team</span>
+        </div>
         <button
           type="button"
           onClick={openRegistration}

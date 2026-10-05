@@ -5,7 +5,8 @@ import {
   MapPin, 
   Calendar,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Ticket
 } from 'lucide-react';
 import { eventConfig } from '../data/eventConfig';
 import { useRegistration } from '../context/useRegistration';
@@ -143,6 +144,14 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="flex items-start gap-2">
+                <Ticket className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-white font-medium block">Registration Fee: ₹250 per team</span>
+                  <span className="text-slate-400">One payment per team</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2">
                 <Clock className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
                 <span className="text-slate-300">{eventConfig.time} ({eventConfig.eventType})</span>
               </div>
@@ -162,7 +171,7 @@ export const Footer: React.FC = () => {
                   Faculty: <a href="tel:+916379339310" className="hover:text-cyan-300 transition-colors" aria-label="Call Faculty Coordinator Vividhini O">Vividhini O</a> (+91 63793 39310)
                 </span>
                 <span className="text-slate-300 block mt-0.5">
-                  Students: <a href="tel:+918610104355" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Surya A">Surya A</a>, <a href="tel:+916383785532" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Sarthoshini S">Sarthoshini S</a>
+                  Students: <a href="tel:+918610104355" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Surya A">Surya A</a>, <a href="tel:+916383785532" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Santhoshini S">Santhoshini S</a>
                 </span>
               </div>
             </div>

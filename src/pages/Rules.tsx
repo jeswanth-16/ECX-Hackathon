@@ -8,7 +8,8 @@ import {
   Clock, 
   MapPin, 
   ArrowRight,
-  CheckCircle2
+  CheckCircle2,
+  Ticket
 } from 'lucide-react';
 
 export const Rules: React.FC = () => {
@@ -62,7 +63,7 @@ export const Rules: React.FC = () => {
           Schedule & Logistics
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs sm:text-sm">
           <div className="flex items-start gap-3 p-4 rounded-xl bg-dark-950 border border-slate-800">
             <Calendar className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
             <div>
@@ -88,11 +89,21 @@ export const Rules: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-dark-950 border border-slate-800">
+          <div className="flex items-start gap-3 p-4 rounded-xl bg-dark-950 border border-cyan-500/30">
+            <Ticket className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+            <div>
+              <span className="font-mono text-cyan-400 text-[10px] uppercase font-bold block">Registration Fee</span>
+              <strong className="text-white block">₹250 per team</strong>
+              <span className="text-slate-400 text-xs">One payment per team</span>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3 p-4 rounded-xl bg-dark-950 border border-slate-800 sm:col-span-2 lg:col-span-2">
             <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-mono text-slate-500 text-[10px] uppercase font-bold block">Registration Deadline</span>
               <strong className="text-amber-300 block">{eventConfig.registrationDeadline}</strong>
+              <span className="text-slate-400 text-xs">Submissions collected via official Google Form</span>
             </div>
           </div>
         </div>
