@@ -36,9 +36,9 @@ export const eventConfig: EventConfig = {
     faculty: [
       {
         role: "Faculty Coordinator",
-        name: "Vividhini O",
-        phone: "+91 63793 39310",
-        phoneTel: "tel:+916379339310",
+        name: "Vivedhini O",
+        phone: "+91 99443 22900",
+        phoneTel: "tel:+919944322900",
       },
     ],
     students: [
@@ -105,6 +105,14 @@ export const timelineData: TimelineEvent[] = [
     description: "Final deadline to submit team registrations via the official registration portal.",
     status: "upcoming",
     badge: "Strict Deadline",
+  },
+  {
+    id: "step-quiz",
+    title: "Online Pre-Screening Quiz",
+    timeOrDate: "21st",
+    description: "Registered teams will participate in an online pre-screening quiz on the 21st for initial screening and shortlisting before the main hackathon.",
+    status: "upcoming",
+    badge: "Initial Screening",
   },
   {
     id: "step-3",
@@ -180,7 +188,13 @@ export const faqData: FAQItem[] = [
   {
     id: "faq-6",
     question: "Who can I contact regarding EDGECRAFT 2026?",
-    answer: "You can contact Faculty Coordinator Vividhini O (+91 63793 39310), or Student Coordinators Surya A (+91 861010 4355) and Santhoshini S (+91 63837 85532) from the Department of Electronics and Computer Engineering, Knowledge Institute of Technology, Salem.",
+    answer: "You can contact Faculty Coordinator Vivedhini O (+91 99443 22900), or Student Coordinators Surya A (+91 861010 4355) and Santhoshini S (+91 63837 85532) from the Department of Electronics and Computer Engineering, Knowledge Institute of Technology, Salem.",
     category: "Coordinators",
+  },
+  {
+    id: "faq-quiz",
+    question: "What is the Online Pre-Screening Quiz?",
+    answer: "Registered teams will participate in an online pre-screening quiz on the 21st for initial screening and shortlisting before the main hackathon.",
+    category: "General",
   },
 ];

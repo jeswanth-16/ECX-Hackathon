@@ -33,6 +33,19 @@ export const TimelinePage: React.FC = () => {
         </div>
       </div>
 
+      {/* Pre-Screening Quiz Announcement */}
+      <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-dark-900 border border-cyan-500/30 max-w-2xl mx-auto shadow-card text-center">
+        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 bg-dark-950 border border-slate-800 mb-2">
+          <span>Pre-Screening Quiz</span>
+        </span>
+        <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
+          21st — Online Quiz
+        </h3>
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-lg mx-auto">
+          Registered teams will take an online pre-screening quiz on the 21st for initial screening and shortlisting.
+        </p>
+      </div>
+
       {/* Vertical Timeline */}
       <Timeline />
 

@@ -168,7 +168,7 @@ export const Footer: React.FC = () => {
                   Coordinators
                 </span>
                 <span className="text-white block mt-0.5">
-                  Faculty: <a href="tel:+916379339310" className="hover:text-cyan-300 transition-colors" aria-label="Call Faculty Coordinator Vividhini O">Vividhini O</a> (+91 63793 39310)
+                  Faculty: <a href="tel:+919944322900" className="hover:text-cyan-300 transition-colors" aria-label="Call Faculty Coordinator Vivedhini O">Vivedhini O</a> (+91 99443 22900)
                 </span>
                 <span className="text-slate-300 block mt-0.5">
                   Students: <a href="tel:+918610104355" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Surya A">Surya A</a>, <a href="tel:+916383785532" className="text-white hover:text-cyan-300 transition-colors" aria-label="Call Student Coordinator Santhoshini S">Santhoshini S</a>

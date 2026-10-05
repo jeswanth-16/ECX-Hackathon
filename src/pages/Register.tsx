@@ -64,6 +64,19 @@ export const Register: React.FC = () => {
                 </p>
               </div>
 
+              {/* Pre-Screening Quiz Announcement */}
+              <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-dark-950/80 border border-slate-800 text-center">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-cyan-400 font-bold block mb-1">
+                  PRE-SCREENING QUIZ
+                </span>
+                <p className="text-base font-bold text-white mb-1">
+                  21st — Online Quiz
+                </p>
+                <p className="text-xs text-slate-300 leading-relaxed max-w-md mx-auto">
+                  Registered teams will take an online pre-screening quiz on the 21st for initial screening and shortlisting.
+                </p>
+              </div>
+
               <button
                 type="button"
                 onClick={openRegistration}
@@ -173,16 +186,16 @@ export const Register: React.FC = () => {
                 <UserCheck className="w-4 h-4" />
                 <span className="font-mono text-[10px] font-bold uppercase">Faculty Coordinator</span>
               </div>
-              <p className="font-bold text-white text-base">Vividhini O</p>
+              <p className="font-bold text-white text-base">Vivedhini O</p>
               <p className="text-slate-400 text-xs mt-0.5">{eventConfig.department}</p>
             </div>
             <a
-              href="tel:+916379339310"
-              aria-label="Call Faculty Coordinator Vividhini O"
+              href="tel:+919944322900"
+              aria-label="Call Faculty Coordinator Vivedhini O"
               className="mt-3 pt-3 border-t border-slate-800/80 inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 transition-colors"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>+91 63793 39310</span>
+              <span>+91 99443 22900</span>
             </a>
           </div>
 
