@@ -29,7 +29,7 @@ export const FAQPage: React.FC = () => {
             </div>
             <h4 className="text-lg font-bold text-white mb-1.5">Need Further Assistance?</h4>
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-4">
-              Connect with Faculty Coordinator <a href="tel:+919944322900" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Faculty Coordinator Vivedhini O">Vivedhini O (+91 99443 22900)</a>, or Student Coordinators <a href="tel:+918610104355" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Student Coordinator Surya A">Surya A (+91 861010 4355)</a> and <a href="tel:+916383785532" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Student Coordinator Santhoshini S">Santhoshini S (+91 63837 85532)</a> at {eventConfig.college}.
+              Connect with Faculty Coordinator <a href="tel:+919944322900" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Faculty Coordinator  Ms.O.Vivedhini">Ms.O.Vivedhini (+91 99443 22900)</a>, or Student Coordinators <a href="tel:+918610104355" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Student Coordinator Surya A">Surya A (+91 861010 4355)</a> and <a href="tel:+916383785532" className="text-cyan-400 hover:text-cyan-300 font-semibold underline decoration-slate-700 underline-offset-2" aria-label="Call Student Coordinator Santhoshini S">Santhoshini S (+91 63837 85532)</a> at {eventConfig.college}.
             </p>
           </div>
           <div className="pt-4 border-t border-slate-800/80 font-mono text-xs text-slate-300">
@@ -55,7 +55,7 @@ export const FAQPage: React.FC = () => {
             >
               <span>Register Now</span>
               <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </button>Ms.O.Vivedhini
           </div>
         </div>
       </div>

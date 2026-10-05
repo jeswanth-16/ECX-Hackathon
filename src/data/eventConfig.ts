@@ -36,7 +36,7 @@ export const eventConfig: EventConfig = {
     faculty: [
       {
         role: "Faculty Coordinator",
-        name: "Vivedhini O",
+        name: "Ms.O.Vivedhini",
         phone: "+91 99443 22900",
         phoneTel: "tel:+919944322900",
       },
@@ -188,7 +188,7 @@ export const faqData: FAQItem[] = [
   {
     id: "faq-6",
     question: "Who can I contact regarding EDGECRAFT 2026?",
-    answer: "You can contact Faculty Coordinator Vivedhini O (+91 99443 22900), or Student Coordinators Surya A (+91 861010 4355) and Santhoshini S (+91 63837 85532) from the Department of Electronics and Computer Engineering, Knowledge Institute of Technology, Salem.",
+    answer: "You can contact Faculty Coordinator Ms.O.Vivedhini (+91 99443 22900), or Student Coordinators Surya A (+91 861010 4355) and Santhoshini S (+91 63837 85532) from the Department of Electronics and Computer Engineering, Knowledge Institute of Technology, Salem.",
     category: "Coordinators",
   },
   {
