@@ -70,10 +70,10 @@ export const Register: React.FC = () => {
                   PRE-SCREENING QUIZ
                 </span>
                 <p className="text-base font-bold text-white mb-1">
-                  21st — Online Quiz
+                  17th — Online Quiz
                 </p>
                 <p className="text-xs text-slate-300 leading-relaxed max-w-md mx-auto">
-                  Registered teams will take an online pre-screening quiz on the 21st for initial screening and shortlisting.
+                  Registered teams will take an online pre-screening quiz on the 17th for initial screening and shortlisting.
                 </p>
               </div>
 

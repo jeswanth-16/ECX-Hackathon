@@ -39,10 +39,10 @@ export const TimelinePage: React.FC = () => {
           <span>Pre-Screening Quiz</span>
         </span>
         <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight mb-2">
-          21st — Online Quiz
+          17th — Online Quiz
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-lg mx-auto">
-          Registered teams will take an online pre-screening quiz on the 21st for initial screening and shortlisting.
+          Registered teams will take an online pre-screening quiz on the 17th for initial screening and shortlisting.
         </p>
       </div>
 

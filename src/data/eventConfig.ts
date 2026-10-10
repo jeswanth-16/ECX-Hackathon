@@ -109,8 +109,8 @@ export const timelineData: TimelineEvent[] = [
   {
     id: "step-quiz",
     title: "Online Pre-Screening Quiz",
-    timeOrDate: "21st",
-    description: "Registered teams will participate in an online pre-screening quiz on the 21st for initial screening and shortlisting before the main hackathon.",
+    timeOrDate: "17th",
+    description: "Registered teams will participate in an online pre-screening quiz on the 17th for initial screening and shortlisting before the main hackathon.",
     status: "upcoming",
     badge: "Initial Screening",
   },
@@ -194,7 +194,7 @@ export const faqData: FAQItem[] = [
   {
     id: "faq-quiz",
     question: "What is the Online Pre-Screening Quiz?",
-    answer: "Registered teams will participate in an online pre-screening quiz on the 21st for initial screening and shortlisting before the main hackathon.",
+    answer: "Registered teams will participate in an online pre-screening quiz on the 17th for initial screening and shortlisting before the main hackathon.",
     category: "General",
   },
 ];
