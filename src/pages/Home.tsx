@@ -122,7 +122,7 @@ export const Home: React.FC = () => {
                   REGISTRATION FEE
                 </span>
                 <span className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-0.5">
-                  ₹250 <span className="text-sm font-mono font-normal text-slate-400">/ TEAM</span>
+                  ₹250 <span className="text-sm font-mono font-normal text-slate-400">/ Per Person</span>
                 </span>
                 <span className="text-xs text-cyan-300 mt-1 font-medium">
                   Registration Fee: ₹250 per Member
