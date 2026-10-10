@@ -146,8 +146,8 @@ export const Footer: React.FC = () => {
               <div className="flex items-start gap-2">
                 <Ticket className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-white font-medium block">Registration Fee: ₹250 per team</span>
-                  <span className="text-slate-400">One payment per team</span>
+                  <span className="text-white font-medium block">Registration Fee: ₹250 per Member</span>
+                  <span className="text-slate-400">One payment per Member</span>
                 </div>
               </div>
 

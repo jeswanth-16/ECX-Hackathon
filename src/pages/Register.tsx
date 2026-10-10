@@ -57,10 +57,10 @@ export const Register: React.FC = () => {
                   ₹250 <span className="text-base sm:text-lg font-mono font-normal text-slate-400">/ TEAM</span>
                 </div>
                 <p className="text-xs sm:text-sm text-cyan-300 font-semibold mt-2">
-                  Registration Fee: ₹250 per team
+                  Registration Fee: ₹250 per Member
                 </p>
                 <p className="text-xs text-slate-400 mt-1">
-                  One payment is required per team, regardless of team size.
+                  One payment is required per Member, regardless of team size.
                 </p>
               </div>
 
@@ -110,7 +110,7 @@ export const Register: React.FC = () => {
                   ₹250 <span className="text-base sm:text-lg font-mono font-normal text-slate-400">/ TEAM</span>
                 </div>
                 <p className="text-xs sm:text-sm text-cyan-300 font-semibold mt-2">
-                  Registration Fee: ₹250 per team
+                  Registration Fee: ₹250 per Member
                 </p>
                 <p className="text-xs text-slate-400 mt-1">
                   One payment is required per team, regardless of team size.
